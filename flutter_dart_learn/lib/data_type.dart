@@ -11,6 +11,7 @@ class _DataTypeState extends State<DataType> {
     _numType();
     _stringType();
     _boolType();
+    _listType();
     return Container(
       child: Text('常用数据类型,请看控制台输出'),
     );
@@ -74,4 +75,39 @@ class _DataTypeState extends State<DataType> {
     print(success || fail); //true
     print(success && fail); //false
   }
+
+  ///List集合
+  void _listType() {
+    print('---------------------listType---------------------------');
+    ///集合初始化的方式
+    List list = [1, 2, 3, '集合']; //初始化时，添加元素
+    print(list);
+    List<int> list2 = [];
+    // list2 = list;//错误做法，类型转换错误
+    List list3 = [];
+    list3.add('list3'); //通过add方法添加元素
+    list3.addAll(list);
+    print('List集合add添加元素:   $list3');
+    List list4 = List.generate(3, (index) => index * 2);
+    print(list4);
+
+    ///遍历集合的方式
+    print('------------------遍历集合for方式---------------------------');
+    for (int i = 0; i < list.length; i++) {
+      print(list[i]);
+    }
+    print('------------------遍历集合高级for方式---------------------------');
+    for (var o in list) {
+      print(o);
+    }
+    print('------------------遍历集合forEach---------------------------');
+    list.forEach((val) {
+      print(val);
+    });
+    //作业
+    //list.removeXx,insert,sublist,indexOf等
+  }
+
+
+
 }
