@@ -12,6 +12,7 @@ class _DataTypeState extends State<DataType> {
     _stringType();
     _boolType();
     _listType();
+    _mapType();
     return Container(
       child: Text('常用数据类型,请看控制台输出'),
     );
@@ -33,8 +34,7 @@ class _DataTypeState extends State<DataType> {
   ///字符串类型
   void _stringType() {
     print('---------------------stringType---------------------------');
-    String str1 = '字符串',
-        str2 = "双引号"; //字符串定义,单引号,双引号都可以
+    String str1 = '字符串', str2 = "双引号"; //字符串定义,单引号,双引号都可以
     String str3 = 'st1:$str1 str2:$str2 (双引号内)'; //字符串拼接
     String str5 = '常用数据类型，请看控制台输出';
     String str4 = 'st1:' + str1 + 'str2:' + str2 + ' (加号拼接字符串)'; //字符串拼接
@@ -61,20 +61,19 @@ class _DataTypeState extends State<DataType> {
     String str11 = "aaabbbccc";
     print("判断是否包含xxx:  ${str11.contains("cc")}"); //true
     print("判断是否包含或以xxx开始:  ${str11.startsWith("aa")}"); //true
-    print("判断是否包含或以xxx开始(index为3开始判断):  ${str11.startsWith(
-        "aa", 3)}"); //false 从index=3开始判断
+    print(
+        "判断是否包含或以xxx开始(index为3开始判断):  ${str11.startsWith("aa", 3)}"); //false 从index=3开始判断
     String str12 = "abcdeab";
-    print("abcdeab 替换 ab 为 cc  :   ${str12.replaceAll(
-        "ab", "cc")}"); //cccdecc 替换全部符合条件的
-    print("abcdeab 替换第一个ab 为 dd  :  ${str12.replaceFirst(
-        "ab", "dd")}"); //ddcdeab 只替换第一个符合条件的
+    print(
+        "abcdeab 替换 ab 为 cc  :   ${str12.replaceAll("ab", "cc")}"); //cccdecc 替换全部符合条件的
+    print(
+        "abcdeab 替换第一个ab 为 dd  :  ${str12.replaceFirst("ab", "dd")}"); //ddcdeab 只替换第一个符合条件的
   }
 
   ///布尔类型，Dart 是强 bool 类型检查，只有bool 类型的值是true 才被认为是true
   void _boolType() {
     print('---------------------boolType---------------------------');
-    bool success = true,
-        fail = false;
+    bool success = true, fail = false;
     print(success);
     print(fail);
     print(success || fail); //true
@@ -117,60 +116,108 @@ class _DataTypeState extends State<DataType> {
 
     var list5 = [1, 2, 3, '集合'];
     list5.insert(1, "元素");
-    print(r"[1, 2, 3, '集合']  在下标为 1 插入元素:   "+list5.toString());
+    print(r"[1, 2, 3, '集合']  在下标为 1 插入元素:   " + list5.toString());
 
-    var list6=[5,'b','c'];
+    var list6 = [5, 'b', 'c'];
     list6.insertAll(1, list5);
-    print(r"[5,'b','c']  在下标为 1 插入list5 所有元素:   "+list6.toString());
+    print(r"[5,'b','c']  在下标为 1 插入list5 所有元素:   " + list6.toString());
 
-    List<String> list7=["a","a","a"];
-    List<String> list8=["b","b"];
+    List<String> list7 = ["a", "a", "a"];
+    List<String> list8 = ["b", "b"];
     list7.addAll(list8);
     print("list7 合并 list8 元素:   $list7");
 
-    List list9=['a','b','c','d',1,2,3];
+    List list9 = ['a', 'b', 'c', 'd', 1, 2, 3];
     list9.remove('a');
-    print(r'精确删除 a 元素:   '+list9.toString());
+    print(r'精确删除 a 元素:   ' + list9.toString());
 
-    List list10=['a','b','c','d',1,2,3];
+    List list10 = ['a', 'b', 'c', 'd', 1, 2, 3];
     list10.removeAt(3);
-    print(r'删除下标为3的元素:   '+list10.toString());
+    print(r'删除下标为3的元素:   ' + list10.toString());
 
-    List list11=['a','b','c','d',1,2,3];
-    list11.removeRange(0, 2);//删除索引从0-2的元素 含头不含尾
+    List list11 = ['a', 'b', 'c', 'd', 1, 2, 3];
+    list11.removeRange(0, 2); //删除索引从0-2的元素 含头不含尾
     print('删除索引从0-2的元素 含头不含尾:    $list11');
-    list11.removeWhere((element){ return element==1;});//根据条件 筛选，这里表示删除元素值为1的元素
+    list11.removeWhere((element) {
+      return element == 1;
+    }); //根据条件 筛选，这里表示删除元素值为1的元素
     print('条件筛选删除值为1的元素:   $list11');
-    list11.removeWhere((element)=> element==2);//条件只有一个表达式时，可以用箭头函数简化写法
+    list11.removeWhere((element) => element == 2); //条件只有一个表达式时，可以用箭头函数简化写法
     print('条件筛选删除值为2的元素(简化版写法):   $list11');
 
-    List<int> list12=[1,2,3,4,5,6];
-    list12.retainWhere((element) => (element>3));
+    List<int> list12 = [1, 2, 3, 4, 5, 6];
+    list12.retainWhere((element) => (element > 3));
     print('条件筛选>3的值返回,会修改原数组:   $list12');
 
-    List list13=[1,2,3,4,5,6,7,8];
-    list13.where((element) => (element>5));
+    List list13 = [1, 2, 3, 4, 5, 6, 7, 8];
+    list13.where((element) => (element > 5));
     print('条件筛选>3的值返回,会修改原数组:   $list13');
 
-    List list14=['a','b','c','d',1,2,3];
+    List list14 = ['a', 'b', 'c', 'd', 1, 2, 3];
     //从索引0处开始查找指定元素，返回指定元素的索引
     print('精确搜索元素2对应的索引值:    ${list14.indexOf(2)}');
     //从索引3处开始查找指定元素，如果存在返回元素索引，否则返回-1
-    print('精确搜索元素a对应的索引值,从索引3处开始查找:    ${list14.indexOf('a',3)}');
+    print('精确搜索元素a对应的索引值,从索引3处开始查找:    ${list14.indexOf('a', 3)}');
     //判断list元素中是否有任何一个元素满足给定的条件，如果满足返回true 否则false
     bool result = list14.contains("d");
     print('非for循环方式,判断指定元素是否在list集合内:    $result');
 
-    List<int> list15=[1,2,3,4,5,6,7,8];
-    List<int> list16 = list15.sublist(1);//从指定索引截取List
-    List<int> list17 = list15.sublist(1,3);//从指定索引截取List  含头不含尾
+    List<int> list15 = [1, 2, 3, 4, 5, 6, 7, 8];
+    List<int> list16 = list15.sublist(1); //从指定索引截取List
+    List<int> list17 = list15.sublist(1, 3); //从指定索引截取List  含头不含尾
     print('从索引 1 截取,返回新List:    $list16');
     print('从索引 1 到索引3 截取,返回新List(不包含索引3的元素):    $list17');
 
-    List list18=['a','b','c','d',1,2,3];
+    List list18 = ['a', 'b', 'c', 'd', 1, 2, 3];
     String join = list18.join(',');
     print('用 , 号,将集合的元素拼接,返回字符串:   $join');
   }
 
+  ///map是将key和value相关联的对象，key和value都可以是任何类型的对象，并且key是唯一的如果key重复后面添加的key会替换前面的
+  void _mapType() {
+    print('------------------mapType---------------------------');
 
+    ///Map初始化
+    Map names = {'xiaoming': '小明', 'xiaohong': '小红'};
+    print('Map 初始化1 :    $names');
+    //Map ages = {};
+    Map ages = new Map();
+    ages['xiaoming'] = 16;
+    ages['xiaohong'] = 18;
+    print('Map 初始化2 :    $ages');
+
+    print(names['xiaoming']); //获取姓名
+    print(names.keys); //获取所有的key： (name, age)  toList可以转化为数组
+    print(names.values); //获取所有的内容: (张三, 102)    toList可以转化为数组
+    print('map 是否为空:   $names.isEmpty'); //是否为空:  false
+    print('map 是否不为空:   $names.isNotEmpty'); //是否不为空:   true
+    print('map 集合长度:   ${names.length}'); //map集合长度
+
+    Map map1=new Map();
+    map1.addAll({
+      "张三":"18",
+      "李四":"20",
+      "王五":"50"
+    });
+    print("添加多个元素:   $map1");
+    map1.remove("张三");
+    print('删除元素:   $map1');
+
+    print('判断map是否包含叫 李四 的元素:   ${map1.containsKey("李四")}');
+
+    print('------------------map遍历---------------------------');
+    ///Map遍历
+    ages.forEach((k, v) {
+      print(' forEach方式   key:  $k    value:   $v');
+    });
+    Map ages2 = ages.map((k, v) {
+      //迭代生成一个新Map
+      return MapEntry(v, k);
+    });
+    print('key,value 交换,重新生成map   $ages2');
+    for (var key in ages.keys) {
+      print(' for方式   key:  $key   value:   ${ages[key]}');
+    }
+
+  }
 }
