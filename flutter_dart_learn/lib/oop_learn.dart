@@ -50,6 +50,17 @@ class Student extends Person {
   set school(String value) {
     _school = value;
   }
+
+  ///静态方法
+  ///static 关键字修饰
+  static doPrint(String str) {
+    print('doPrint:$str');
+  }
+
+  @override
+  String toString() {
+    return 'name:$name school:${this._school},city:$city,country:$country ${super.toString()}';
+  }
 }
 
 /// Dart 类,所有类都继承自Object
@@ -59,6 +70,12 @@ class Person {
 
   ///标准的构造方法
   Person(this.name, this.age);
+
+  ///重写父类方法
+  @override
+  String toString() {
+    return 'name:$name, age:$age';
+  }
 }
 
 ///  工厂构造方法演示
@@ -73,10 +90,12 @@ class Logger {
     if (_cache == null) {
       _cache = Logger._internal();
     }
+
     /// 不管创建多少个Logger return 返回的是同一个对象,
     /// 因此我们也可以看作是单例
     return _cache;
   }
+
   //命名构造函数
   Logger._internal();
 
@@ -84,3 +103,30 @@ class Logger {
     print(msg);
   }
 }
+
+///-----------------抽象类--------------------
+
+///继承抽象类要实现它的抽象方法，否则也需要将自己定义成抽象类
+class StudyFlutter extends Study {
+  @override
+  void study() {
+    print('Learning Flutter');
+  }
+}
+
+///使用 abstract 修饰符来定义一个抽象类，该类不能被实例化。抽象类在定义接口的时候非常有用，实际上抽象中也包含一些实现
+abstract class Study {
+  void study();
+}
+
+
+///为类添加特征：mixins
+///mixins 是在多个类层次结构中重用代码的一种方式
+///要使用 mixins ，在 with 关键字后面跟一个或多个 mixin 的名字(用逗号分开)，并且with要用在extends关键字之后
+///mixins的特征：实现 mixin ，就创建一个继承 Object 类的子类(不能继承其他类)，不声明任何构造方法，不调用 super
+///猜猜上面的类中哪个是mixin?
+
+
+
+
+

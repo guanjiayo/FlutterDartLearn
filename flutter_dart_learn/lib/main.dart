@@ -50,16 +50,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _oopLearn() {
+    print('------------------oopLearn---------------------------');
+    Logger log1 = Logger();
+    Logger log2 = Logger();
+    print(log1==log2);
+
     //创建Student的对象
     Student stu1 = Student('清华', 'Jack', 18);
     stu1.school = '985';
     print(stu1.toString());
 
-    print('------------------oopLearn---------------------------');
+    Student stu2 = Student('北大', 'Tom', 16, city: '上海', country: '中国');
+    print(stu2.toString());
 
-    Logger log1 = Logger();
-    Logger log2 = Logger();
-    print(log1==log2);
+    //抽象类
+    StudyFlutter sf = StudyFlutter();
+    sf.study();
 
   }
 }
