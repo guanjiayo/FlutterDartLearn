@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dart_learn/data_type.dart';
 
+import 'oop_learn.dart';
+
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,21 +33,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    _oopLearn();
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+        //todo https://segmentfault.com/a/1190000019716289 ListView
         child: ListView(
           children: <Widget>[
             DataType(),
@@ -54,5 +47,19 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  void _oopLearn() {
+    //创建Student的对象
+    Student stu1 = Student('清华', 'Jack', 18);
+    stu1.school = '985';
+    print(stu1.toString());
+
+    print('------------------oopLearn---------------------------');
+
+    Logger log1 = Logger();
+    Logger log2 = Logger();
+    print(log1==log2);
+
   }
 }

@@ -239,10 +239,14 @@ class _DataTypeState extends State<DataType> {
     x = 123;
     print(x);
     print(x.runtimeType);
+
+    /// var 系统自动判断值得类型
     var a = 'hal';
     //a = 123;//你可以改变 x的类型，但是无法改变 a的类型
     print(a.runtimeType);
     print(a);
+
+    ///object Dart 对象的基类
     Object o1 = '11';
     print(o1.runtimeType);
     print(o1);
