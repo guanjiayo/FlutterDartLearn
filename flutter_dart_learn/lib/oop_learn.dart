@@ -119,13 +119,38 @@ abstract class Study {
   void study();
 }
 
+class StudyChinese{
+  String time;
+}
 
 ///为类添加特征：mixins
 ///mixins 是在多个类层次结构中重用代码的一种方式
-///要使用 mixins ，在 with 关键字后面跟一个或多个 mixin 的名字(用逗号分开)，并且with要用在extends关键字之后
-///mixins的特征：实现 mixin ，就创建一个继承 Object 类的子类(不能继承其他类)，不声明任何构造方法，不调用 super
-///猜猜上面的类中哪个是mixin?
 
+///mixins的特征：
+///1. 继承 Object 类的子类(不能继承其他类)
+///2. 不声明任何构造方法
+///3. 不调用 super
+/// Dart 类,所有类都继承自Object
+
+///mixins 使用:
+///在 with 关键字后面跟一个或多个 mixin 的名字(用逗号分开)，并且with要用在extends关键字之后
+
+///场景: 符合mixins特征的类,使用了with的类,是不是就是能直接使用mixins特征类的一些实现方法或者属性之类的意思
+
+class Test extends Person with Study,StudyChinese{
+  Test(String name, int age) : super(name, age);
+
+ @override
+  void set time(String _time) {
+    super.time = _time;
+  }
+
+  @override
+  void study() {
+
+  }
+
+}
 
 
 

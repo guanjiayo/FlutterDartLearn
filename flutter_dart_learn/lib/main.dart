@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dart_learn/data_type.dart';
 
+import 'function_learn.dart';
+import 'generic_learn.dart';
 import 'oop_learn.dart';
 
 void main() {
@@ -33,7 +35,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    _oopLearn();
+    //_oopLearn();
+    //_functionLearn();
+    _genericLearn();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -42,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
         //todo https://segmentfault.com/a/1190000019716289 ListView
         child: ListView(
           children: <Widget>[
-            DataType(),
+            //DataType(),
           ],
         ),
       ),
@@ -67,5 +71,15 @@ class _MyHomePageState extends State<MyHomePage> {
     StudyFlutter sf = StudyFlutter();
     sf.study();
 
+  }
+
+  void _functionLearn() {
+    TestFunction testFunction = TestFunction();
+    testFunction.start();
+  }
+
+  void _genericLearn() {
+    TestGeneric testGeneric = TestGeneric();
+    testGeneric.start();
   }
 }
