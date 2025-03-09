@@ -9,18 +9,17 @@ class TestGeneric {
     //泛型
     Cache<String> cache1 = Cache();
     cache1.setItem('cache1', '参数'); //泛型作用：类型检查约束类比：List<String>
-    String string1 = cache1.getItem('cache1');
+    String? string1 = cache1.getItem('cache1');
     print(string1);
 
     Cache<int> cache2 = Cache();
     cache2.setItem('cache2', 10086);
-    int int1 = cache2.getItem('cache2');
+    int? int1 = cache2.getItem('cache2');
     print(int1);
 
     Member<Student> member = Member(Student('', '', 20));
     print(member.fixedAge());
   }
-
 }
 
 ///泛型：
@@ -29,17 +28,16 @@ class TestGeneric {
 ///泛型类
 ///泛型作用：提高代码服用度
 class Cache<T> {
-  static final Map<String, Object> _cached = Map();
+  final Map<String, T> _cached = Map();
 
   /// 泛型方法
   void setItem(String key, T value) {
     _cached[key] = value;
   }
 
-  T getItem(String key) {
+  T? getItem(String key) {
     return _cached[key];
   }
-
 }
 
 ///泛型限定

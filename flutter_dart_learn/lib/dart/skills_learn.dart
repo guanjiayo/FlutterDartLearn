@@ -11,7 +11,7 @@
 void main() {
 
   ///Dart编程小技巧1：安全的调用
-  List list;// List可能为空
+  List? list;// List可能为空
   ///对于不确定是否为空的对象可以通过?.的方式来方位它的属性和方法以防止空异常如： a?.foo()
   print(list?.length); //善用?.防止空异常
 
@@ -32,9 +32,15 @@ void main() {
     print('list[0] is empty');
   }
 
- ///todo Dart 语法的最佳实践  https://www.dartcn.com/guides/language/effective-dart/documentation
-  /// Dart 的其他学习资料 https://www.dartlang.org
-  ///    https://dart/dev/guides/language/language-tour
-  ///    http://dart.goodev.org/guides/language/language-tour
+
+  ///------------------------------- 学习资料链接 ---------------------------------
+  /// Dart: 最佳实践 https://dart.dev/guides/language/effective-dart/usage
+  /// https://dart.dev/
+  /// https://dart.dev/guides/language/language-tour
+  /// Dart 语法的最佳实践  https://www.dartcn.com/guides/language/effective-dart/documentation
+  /// https://www.dartlang.org
+  /// https://dart/dev/guides/language/language-tour
+  /// http://dart.goodev.org/guides/language/language-tour
+
 
 }
