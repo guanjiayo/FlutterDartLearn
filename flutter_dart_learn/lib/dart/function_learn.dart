@@ -14,17 +14,25 @@ class TestFunction {
   void start() {
     functionLearn._learn();
     functionLearn.anonymousFunction();
+
+    int result = FunctionLearn.doSum(1, 2);
+    print('result:$result');
   }
 }
 
 class FunctionLearn {
-  ///方法构成
+  ///方法的构成
   ///返回值类型 + 方法名 + 参数
   ///其中：返回值类型可缺省，也可为void或具体的类型
-  ///其中匿名方法不需要方法名
+  ///方法名：匿名方法不需要方法名，下文会提到
   ///参数：参数类型和参数名，参数类型可缺省（另外，参数又分可选参数和参数默认值，可参考面向对象一节中构造方法部分的讲解）
-  int sum(int val1, int val2) {
-    return val1 + val2;
+  ///isPrint为可选参数，false是isPrint的默认值
+  int sum(int val1, int val2,{bool? isPrint = false}) {
+    var result = val1 + val2;
+    if (isPrint ?? false) {
+      print(result);
+    }
+    return result;
   }
 
   ///私有方法：
@@ -51,4 +59,8 @@ class FunctionLearn {
     });
   }
 
+  ///静态方法，可以通过类名.doSum调用
+  static doSum(int v1, int v2) {
+    return v1 + v2;
+  }
 }

@@ -104,6 +104,75 @@ class Logger {
   }
 }
 
+///命名够高方法和工厂构造方法主要区别：
+/// 白话来说:
+/// cover: 总是创建新对象
+/// factory: 可用创建新对象,也可以返回已有对象,专注于"返回什么对象"
+/// 1. 实例创建：
+/// cover必须创建新实例
+/// factory可以返回缓存的实例或现有实例
+/// 2. 返回值控制：
+/// cover只能返回新创建的实例,返回值必须是 void
+/// factory可以灵活控制返回什么样的实例
+/// 3. this关键字：
+/// cover可以访问this
+/// factory不能访问this
+/// 4. 常见使用场景
+/// cover:
+// 1. 从JSON数据创建对象
+//   Student.fromJson(Map<String, dynamic> json) : super(json['name'], json['age']) {
+//     _school = json['school'];
+//     enrollDate = DateTime.parse(json['enrollDate']);
+//   }
+//
+//   // 2. 创建默认学生
+//   Student.defaultStudent() : super('未命名', 18) {
+//     _school = '未分配学校';
+//     enrollDate = DateTime.now();
+//   }
+//
+//   // 3. 复制并修改部分属性
+//   Student.copyWith(Student student, {String? newSchool})
+//       : super(student.name, student.age) {
+//     _school = newSchool ?? student._school;
+//     enrollDate = student.enrollDate;
+//   }
+/// factory
+// 1. 单例模式
+//   static Student? _instance;
+//   factory Student.singleton(String name, int age) {
+//     _instance ??= Student(name, age);
+//     return _instance!;
+//   }
+//
+//   // 2. 对象缓存（对象池模式）
+//   factory Student.cached(String name, int age, String school) {
+//     String key = '$name-$school';
+//     return _cache.putIfAbsent(
+//         key, () => Student(school, name, age));
+//   }
+//
+//   // 3. 根据条件返回不同子类实例
+//   factory Student.create(String type, String name, int age) {
+//     switch (type) {
+//       case 'undergraduate':
+//         return UndergraduateStudent(name, age);
+//       case 'graduate':
+//         return GraduateStudent(name, age);
+//       default:
+//         return Student('未知学校', name, age);
+//     }
+//   }
+//
+//   // 4. 处理无效输入并返回默认值
+//   factory Student.safe(String? name, int? age, String? school) {
+//     return Student(
+//       school ?? '未知学校',
+//       name ?? '未知姓名',
+//       age ?? 0
+//     );
+//   }
+
 ///-----------------抽象类--------------------
 
 ///继承抽象类要实现它的抽象方法，否则也需要将自己定义成抽象类
